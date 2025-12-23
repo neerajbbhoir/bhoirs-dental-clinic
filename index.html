@@ -56,13 +56,13 @@
 
         // --- Data ---
         const TREATMENTS = [
-            { icon: "activity", en: "Root Canal (RCT)", mr: "रूट कॅनाल ट्रीटमेंट" },
-            { icon: "layers", en: "Crowns & Bridges", mr: "कॅप आणि ब्रिज" },
+            { icon: "zap", en: "Root Canal (RCT)", mr: "रूट कॅनाल ट्रीटमेंट" },
+            { icon: "crown", en: "Crowns & Bridges", mr: "कॅप आणि ब्रिज" },
             { icon: "sparkles", en: "Teeth Whitening", mr: "दात पांढरे करणे" },
-            { icon: "shield-check", en: "Scaling & Polishing", mr: "दात घासणे आणि पॉलिश" },
+            { icon: "brush", en: "Scaling & Polishing", mr: "दात घासणे आणि पॉलिश" },
             { icon: "scissors", en: "Tooth Extraction", mr: "दात काढणे" },
-            { icon: "zap", en: "Dental Implants", mr: "डेंटल इम्प्लांट" },
-            { icon: "smile", en: "Braces & Aligners", mr: "दातांना क्लिप लावणे" },
+            { icon: "anchor", en: "Dental Implants", mr: "डेंटल इम्प्लांट" },
+            { icon: "grid", en: "Braces & Aligners", mr: "दातांना क्लिप लावणे" },
             { icon: "baby", en: "Kids Dentistry", mr: "लहान मुलांचे उपचार" },
         ];
 
@@ -292,11 +292,24 @@
                                 <address className="not-italic text-base font-marathi">
                                     <strong className={isDark ? 'text-white' : 'text-slate-900'}>१०१/ए माळी कॉम्प्लेक्स,</strong> दुर्गेश पार्कच्या मागे, काल्हेर, भिवंडी-ठाणे - ४२१३०२
                                 </address>
-                                <a href="https://www.google.com/maps/search/?api=1&query=Bhoirs+Dental+Clinic+101/A+Mali+Complex+Kalher+Bhiwandi" target="_blank" className={`flex items-center justify-center gap-3 w-full py-5 rounded-3xl font-black transition-all border-2 ${
-                                    isDark ? 'bg-slate-700 text-blue-300 border-blue-900' : 'bg-white text-blue-600 border-blue-600 hover:bg-blue-50'
-                                }`}>
-                                    <Icon name="map-pin" size={20} /> Open in Google Maps
-                                </a>
+                                
+                                <div className="pt-2">
+                                    <a 
+                                        href="https://www.google.com/maps/search/?api=1&query=Bhoirs+Dental+Clinic+101/A+Mali+Complex+Kalher+Bhiwandi" 
+                                        target="_blank" 
+                                        className={`flex flex-col items-center justify-center gap-2 w-full py-6 rounded-[2.2rem] font-black transition-all shadow-xl active:scale-95 ${
+                                            isDark 
+                                            ? 'bg-blue-600 hover:bg-blue-500 text-white' 
+                                            : 'bg-blue-600 hover:bg-blue-700 text-white'
+                                        }`}
+                                    >
+                                        <div className="flex items-center gap-3">
+                                            <Icon name="map-pin" size={22} fill="white" className="text-white" />
+                                            <span className="text-xl">Open in Google Maps</span>
+                                        </div>
+                                        <span className="text-base font-marathi font-bold tracking-wide">गुगल मॅप्सवर दवाखाना पहा</span>
+                                    </a>
+                                </div>
                             </div>
                         </ClinicCard>
                     </main>
