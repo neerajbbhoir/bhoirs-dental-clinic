@@ -154,7 +154,18 @@
                             </p>
                             <div className={`w-full h-px mb-4 ${isDark ? 'bg-slate-700' : 'bg-slate-100'}`} />
                             <p className={`text-lg font-bold font-marathi ${isDark ? 'text-blue-300' : 'text-blue-600'}`}>डॉ. नीरज भोईर</p>
-                            <div className="mt-2 text-[10px] font-black text-slate-400 uppercase tracking-widest">8+ Years Clinical Excellence</div>
+                            
+                            {/* Experience Badge */}
+                            <div className={`mt-6 inline-flex flex-col items-center gap-1 px-8 py-3 rounded-2xl border transition-all ${
+                                isDark ? 'bg-blue-900/20 border-blue-800/50' : 'bg-blue-50 border-blue-100'
+                            }`}>
+                                <span className={`text-[11px] font-black uppercase tracking-[0.2em] ${isDark ? 'text-blue-400' : 'text-blue-600'}`}>
+                                    8+ Years of Experience
+                                </span>
+                                <span className={`text-base font-marathi font-black ${isDark ? 'text-blue-300' : 'text-blue-900'}`}>
+                                    ८+ वर्षांचा प्रदीर्घ अनुभव
+                                </span>
+                            </div>
                         </div>
                     </div>
 
