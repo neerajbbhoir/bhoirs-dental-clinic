@@ -56,10 +56,10 @@
 
         // --- Data ---
         const TREATMENTS = [
-            { icon: "zap", en: "Root Canal (RCT)", mr: "रूट कॅनाल ट्रीटमेंट" },
+            { icon: "zap", en: "Root Canal (RCT)", mr: "रूट कॅनाल ट्रीटमेंट (दात वाचवणे)" },
             { icon: "crown", en: "Crowns & Bridges", mr: "कॅप आणि ब्रिज" },
             { icon: "sparkles", en: "Teeth Whitening", mr: "दात पांढरे करणे" },
-            { icon: "brush", en: "Scaling & Polishing", mr: "दात घासणे आणि पॉलिश" },
+            { icon: "brush", en: "Scaling & Polishing", mr: "दात साफ करणे आणि पॉलिश" },
             { icon: "scissors", en: "Tooth Extraction", mr: "दात काढणे" },
             { icon: "anchor", en: "Dental Implants", mr: "डेंटल इम्प्लांट" },
             { icon: "grid", en: "Braces & Aligners", mr: "दातांना क्लिप लावणे" },
@@ -132,45 +132,47 @@
                 ctx.fillStyle = gradient;
                 ctx.fillRect(0, 0, width, height);
 
-                // Styling setup
+                // Styling setup - Center Alignment
                 ctx.fillStyle = '#ffffff';
-                ctx.textBaseline = 'top';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                const centerX = width / 2;
 
                 // Clinic Name
-                ctx.font = 'bold 54px Inter, sans-serif';
-                ctx.fillText('BHOIRS DENTAL CLINIC', 60, 60);
+                ctx.font = 'bold 52px Inter, sans-serif';
+                ctx.fillText('BHOIRS DENTAL CLINIC', centerX, 80);
                 
-                ctx.font = 'bold 44px "Noto Sans Devanagari", sans-serif';
-                ctx.fillText('भोईर डेंटल क्लिनिक', 60, 125);
+                ctx.font = 'bold 42px "Noto Sans Devanagari", sans-serif';
+                ctx.fillText('भोईर डेंटल क्लिनिक', centerX, 145);
 
                 // Divider
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
-                ctx.fillRect(60, 200, width - 120, 2);
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+                ctx.fillRect(150, 190, width - 300, 2);
 
                 // Doctor Info
                 ctx.fillStyle = '#ffffff';
                 ctx.font = 'bold 48px Inter, sans-serif';
-                ctx.fillText('Dr. Neeraj B. Bhoir', 60, 240);
+                ctx.fillText('Dr. Neeraj B. Bhoir', centerX, 250);
                 
-                ctx.font = '30px Inter, sans-serif';
-                ctx.fillText('B.D.S. Mumbai | Reg No. A-28184', 60, 300);
+                ctx.font = '500 28px Inter, sans-serif';
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+                ctx.fillText('B.D.S. Mumbai | Reg No. A-28184', centerX, 300);
 
-                // Contact Details
-                ctx.font = '28px Inter, sans-serif';
-                ctx.fillText('📞 +91 8976889428', 60, 370);
-                ctx.fillText('✉️ bhoirsdentalclinic@gmail.com', 60, 415);
+                // Contact Details (One line)
+                ctx.font = 'bold 26px Inter, sans-serif';
+                ctx.fillStyle = '#ffffff';
+                ctx.fillText('📞 +91 8976889428   •   ✉️ bhoirsdentalclinic@gmail.com', centerX, 370);
 
-                // Address
+                // Address (Two lines)
                 ctx.font = '24px Inter, sans-serif';
-                const address1 = '101/A Mali Complex, Behind Durgesh Park, Kalher,';
-                const address2 = 'Bhiwandi-Thane - 421302';
-                ctx.fillText(address1, 60, 480);
-                ctx.fillText(address2, 60, 515);
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+                ctx.fillText('101/A Mali Complex, Behind Durgesh Park,', centerX, 440);
+                ctx.fillText('Kalher, Bhiwandi-Thane - 421302', centerX, 480);
 
                 // Footer tagline
-                ctx.font = 'italic 24px Inter, sans-serif';
-                ctx.textAlign = 'right';
-                ctx.fillText('"Healthy Teeth, Healthy Smile."', width - 60, height - 60);
+                ctx.font = 'italic bold 22px Inter, sans-serif';
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+                ctx.fillText('"Healthy Teeth, Healthy Smile."', centerX, 550);
 
                 // Convert to JPG and download
                 const link = document.createElement('a');
