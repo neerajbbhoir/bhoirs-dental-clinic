@@ -125,59 +125,70 @@
                 canvas.width = width;
                 canvas.height = height;
 
-                // Background
+                // 1. Background - Deep Blue Gradient (Trustworthy/Professional)
                 const gradient = ctx.createLinearGradient(0, 0, width, height);
-                gradient.addColorStop(0, '#1d4ed8'); // blue-700
-                gradient.addColorStop(1, '#0284c7'); // sky-600
+                gradient.addColorStop(0, '#0f172a'); // Slate 900
+                gradient.addColorStop(0.5, '#1e3a8a'); // Blue 900
+                gradient.addColorStop(1, '#1e40af'); // Blue 800
                 ctx.fillStyle = gradient;
                 ctx.fillRect(0, 0, width, height);
 
-                // Styling setup - Center Alignment
+                // 2. Border (Elegant Frame)
+                ctx.strokeStyle = '#ffffff';
+                ctx.lineWidth = 2;
+                ctx.globalAlpha = 0.3;
+                ctx.strokeRect(30, 30, width - 60, height - 60);
+                ctx.globalAlpha = 1.0;
+
+                // 3. Content Setup
                 ctx.fillStyle = '#ffffff';
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
                 const centerX = width / 2;
 
-                // Clinic Name
-                ctx.font = 'bold 52px Inter, sans-serif';
-                ctx.fillText('BHOIRS DENTAL CLINIC', centerX, 80);
+                // 4. Clinic Name
+                ctx.font = 'bold 50px Inter, sans-serif';
+                ctx.fillText('BHOIRS DENTAL CLINIC', centerX, 140);
                 
-                ctx.font = 'bold 42px "Noto Sans Devanagari", sans-serif';
-                ctx.fillText('भोईर डेंटल क्लिनिक', centerX, 145);
+                ctx.font = 'bold 36px "Noto Sans Devanagari", sans-serif';
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+                ctx.fillText('भोईर डेंटल क्लिनिक', centerX, 195);
 
-                // Divider
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
-                ctx.fillRect(150, 190, width - 300, 2);
+                // 5. Divider with star/dot
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+                ctx.fillRect(centerX - 100, 245, 200, 1);
 
-                // Doctor Info
-                ctx.fillStyle = '#ffffff';
+                // 6. Doctor Info (Gold Color for Premium Feel)
+                ctx.fillStyle = '#fbbf24'; // Amber-400 (Gold-ish)
                 ctx.font = 'bold 48px Inter, sans-serif';
-                ctx.fillText('Dr. Neeraj B. Bhoir', centerX, 250);
+                ctx.fillText('Dr. Neeraj B. Bhoir', centerX, 300);
                 
-                ctx.font = '500 28px Inter, sans-serif';
+                ctx.font = '500 26px Inter, sans-serif';
                 ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-                ctx.fillText('B.D.S. Mumbai | Reg No. A-28184', centerX, 300);
+                ctx.fillText('B.D.S. Mumbai | Reg No. A-28184', centerX, 350);
 
-                // Contact Details (One line)
-                ctx.font = 'bold 26px Inter, sans-serif';
+                // 7. Contact Info Box
+                const boxY = 410;
+                // Phone & Email
+                ctx.font = 'bold 24px Inter, sans-serif';
                 ctx.fillStyle = '#ffffff';
-                ctx.fillText('📞 +91 8976889428   •   ✉️ bhoirsdentalclinic@gmail.com', centerX, 370);
+                ctx.fillText('📞 +91 8976889428   •   ✉️ bhoirsdentalclinic@gmail.com', centerX, boxY);
 
-                // Address (Two lines)
-                ctx.font = '24px Inter, sans-serif';
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-                ctx.fillText('101/A Mali Complex, Behind Durgesh Park,', centerX, 440);
-                ctx.fillText('Kalher, Bhiwandi-Thane - 421302', centerX, 480);
+                // Address
+                ctx.font = '22px Inter, sans-serif';
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+                ctx.fillText('101/A Mali Complex, Behind Durgesh Park,', centerX, boxY + 50);
+                ctx.fillText('Kalher, Bhiwandi-Thane - 421302', centerX, boxY + 85);
 
-                // Footer tagline
-                ctx.font = 'italic bold 22px Inter, sans-serif';
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
-                ctx.fillText('"Healthy Teeth, Healthy Smile."', centerX, 550);
+                // 8. Footer Tagline
+                ctx.font = 'italic 18px Inter, sans-serif';
+                ctx.fillStyle = '#fbbf24'; // Gold
+                ctx.fillText('"Healthy Teeth, Healthy Smile"', centerX, height - 45);
 
                 // Convert to JPG and download
                 const link = document.createElement('a');
                 link.download = 'Bhoirs-Dental-Clinic-Business-Card.jpg';
-                link.href = canvas.toDataURL('image/jpeg', 0.9);
+                link.href = canvas.toDataURL('image/jpeg', 0.95);
                 link.click();
             };
 
