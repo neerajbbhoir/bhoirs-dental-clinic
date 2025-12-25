@@ -42,7 +42,7 @@
     <div id="root"></div>
 
     <script type="text/babel">
-        const { useState, useEffect, useMemo } = React;
+        const { useState, useEffect, useMemo, useRef } = React;
         
         // --- Icons Wrapper (Since we're in a single file UMD context) ---
         const Icon = ({ name, size = 24, className = "", fill = "none" }) => {
@@ -107,15 +107,83 @@
             });
             
             const [openFaq, setOpenFaq] = useState(null);
+            const canvasRef = useRef(null);
 
             useEffect(() => {
                 localStorage.setItem('theme', isDark ? 'dark' : 'light');
                 document.body.className = isDark ? 'bg-slate-900 text-slate-100' : 'bg-blue-50 text-slate-900';
             }, [isDark]);
 
+            const handleDownloadCard = () => {
+                const canvas = canvasRef.current;
+                if (!canvas) return;
+                
+                const ctx = canvas.getContext('2d');
+                const width = 1050;
+                const height = 600;
+                canvas.width = width;
+                canvas.height = height;
+
+                // Background
+                const gradient = ctx.createLinearGradient(0, 0, width, height);
+                gradient.addColorStop(0, '#1d4ed8'); // blue-700
+                gradient.addColorStop(1, '#0284c7'); // sky-600
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, width, height);
+
+                // Styling setup
+                ctx.fillStyle = '#ffffff';
+                ctx.textBaseline = 'top';
+
+                // Clinic Name
+                ctx.font = 'bold 54px Inter, sans-serif';
+                ctx.fillText('BHOIRS DENTAL CLINIC', 60, 60);
+                
+                ctx.font = 'bold 44px "Noto Sans Devanagari", sans-serif';
+                ctx.fillText('भोईर डेंटल क्लिनिक', 60, 125);
+
+                // Divider
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+                ctx.fillRect(60, 200, width - 120, 2);
+
+                // Doctor Info
+                ctx.fillStyle = '#ffffff';
+                ctx.font = 'bold 48px Inter, sans-serif';
+                ctx.fillText('Dr. Neeraj B. Bhoir', 60, 240);
+                
+                ctx.font = '30px Inter, sans-serif';
+                ctx.fillText('B.D.S. Mumbai | Reg No. A-28184', 60, 300);
+
+                // Contact Details
+                ctx.font = '28px Inter, sans-serif';
+                ctx.fillText('📞 +91 8976889428', 60, 370);
+                ctx.fillText('✉️ bhoirsdentalclinic@gmail.com', 60, 415);
+
+                // Address
+                ctx.font = '24px Inter, sans-serif';
+                const address1 = '101/A Mali Complex, Behind Durgesh Park, Kalher,';
+                const address2 = 'Bhiwandi-Thane - 421302';
+                ctx.fillText(address1, 60, 480);
+                ctx.fillText(address2, 60, 515);
+
+                // Footer tagline
+                ctx.font = 'italic 24px Inter, sans-serif';
+                ctx.textAlign = 'right';
+                ctx.fillText('"Healthy Teeth, Healthy Smile."', width - 60, height - 60);
+
+                // Convert to JPG and download
+                const link = document.createElement('a');
+                link.download = 'Bhoirs-Dental-Clinic-Business-Card.jpg';
+                link.href = canvas.toDataURL('image/jpeg', 0.9);
+                link.click();
+            };
+
             return (
                 <div className={`min-h-screen flex flex-col max-w-2xl mx-auto shadow-2xl relative theme-transition ${isDark ? 'bg-slate-900' : 'bg-white'}`}>
                     
+                    {/* Hidden Canvas for Card Generation */}
+                    <canvas ref={canvasRef} style={{ display: 'none' }}></canvas>
+
                     {/* Theme Toggle */}
                     <button 
                         onClick={() => setIsDark(!isDark)}
@@ -137,8 +205,26 @@
                         <p className="text-lg font-medium opacity-80 mt-1 font-marathi">दातांचा दवाखाना</p>
                     </header>
 
+                    {/* Business Card Download Button Section */}
+                    <div className="px-6 -mt-6 mb-4 z-20">
+                        <button 
+                            onClick={handleDownloadCard}
+                            className={`w-full flex flex-col items-center justify-center gap-1 py-4 rounded-3xl font-black transition-all shadow-xl active:scale-95 border-2 ${
+                                isDark 
+                                ? 'bg-slate-800 border-blue-900 text-blue-400 hover:bg-slate-700' 
+                                : 'bg-white border-blue-100 text-blue-600 hover:bg-blue-50'
+                            }`}
+                        >
+                            <div className="flex items-center gap-2">
+                                <Icon name="download" size={20} />
+                                <span className="text-lg uppercase tracking-tight">Download Business Card</span>
+                            </div>
+                            <span className="text-sm font-marathi font-bold">व्हिजिटिंग कार्ड डाउनलोड करा</span>
+                        </button>
+                    </div>
+
                     {/* Doctor Card */}
-                    <div className="-mt-10 px-6">
+                    <div className="px-6">
                         <div className={`rounded-[3rem] shadow-xl p-8 text-center relative z-10 border theme-transition ${
                             isDark ? 'bg-slate-800 border-slate-700' : 'bg-white border-blue-50'
                         }`}>
@@ -267,7 +353,7 @@
                                         <Icon name="quote" className="text-blue-400 mb-3 opacity-20" size={32} />
                                         <div className="flex gap-1 mb-3">
                                             {[...Array(t.rating)].map((_, star) => (
-                                                <Icon key={star} name="star" size={14} fill="#fbbf24" className="text-yellow-400" />
+                                                <Icon key={star} name="star" size={star < t.rating ? 14 : 14} fill={star < t.rating ? "#fbbf24" : "none"} className="text-yellow-400" />
                                             ))}
                                         </div>
                                         <p className="text-sm italic mb-3 font-medium">"{t.textEn}"</p>
